@@ -1,0 +1,9 @@
+package exila.user.management.request;
+
+public class CreatePasswordRequest {
+	
+	String email;
+	Long otp;
+	String password;
+
+}

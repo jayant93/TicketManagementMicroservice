@@ -1,0 +1,23 @@
+package exila.user.management.restController;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import exila.user.management.request.UserRequest;
+import exila.user.management.respopnse.UserResponse;
+
+@RestController("/user")
+public class UserController {
+
+	@PostMapping("/create")
+	public UserResponse createUser(@RequestBody UserRequest request) {
+		
+		UserResponse response = new UserResponse();
+		
+		return response;
+		
+	}
+	
+	
+}

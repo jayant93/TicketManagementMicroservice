@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;DepartmentManagementMicroservice-1&apos; to &apos;OrganisationManagementMicroservice&apos;" description="Rename resource &apos;DepartmentManagementMicroservice-1&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/DepartmentManagementMicroservice-1" name="OrganisationManagementMicroservice" stamp="1657252509840" updateReferences="true"/>
+</session>
