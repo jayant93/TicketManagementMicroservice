@@ -1,9 +1,10 @@
 package exila.user.management.restController;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class UserController {
 	UserManagement service;
 	
 	@PostMapping("/create")
-	public UserResponse createUser(@RequestBody UserRequest request) {
+	public UserResponse createUser(@Valid @RequestBody UserRequest request) {
 		
 		
 		UserDto dto = mapper.map(request,UserDto.class);
@@ -36,7 +37,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/create/password")
-	public Boolean createPasswordUsingOtp(@RequestBody CreatePasswordRequest request) {
+	public Boolean createPasswordUsingOtp(@Valid @RequestBody CreatePasswordRequest request) {
 		
 		
 		CreatePasswordDto dto = mapper.map(request, CreatePasswordDto.class);
@@ -44,6 +45,8 @@ public class UserController {
 
 		return true;
 	}
+	
+	
 	
 	
 }

@@ -1,13 +1,28 @@
 package exila.user.management.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class UserAddress {
 	
+	@NotBlank(message = "Street is mandatory")
 	private String street;
+	
+	@NotBlank(message = "Building Number is mandatory")
 	private String buildingNumber;
+	
+	@NotBlank(message = "City is mandatory")
 	private String city;
+	
+	@NotBlank(message = "State is mandatory")
 	private String state;
+	
+	@NotBlank(message = "Country is mandatory")
 	private String country;
+	
+	@NotBlank(message = "Pincode is mandatory")
 	private String pincode;
+	
+	@NotBlank(message = "LandMark is mandatory")
 	private String landmark;
 	
 	public String getStreet() {

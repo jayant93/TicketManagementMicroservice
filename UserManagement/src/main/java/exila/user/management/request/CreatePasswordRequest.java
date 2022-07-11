@@ -1,9 +1,16 @@
 package exila.user.management.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class CreatePasswordRequest {
 	
+	@NotBlank(message = "Email is mandatory")
 	String email;
+	
+	@NotBlank(message = "Otp is mandatory")
 	Long otp;
+	
+	@NotBlank(message = "Password is mandatory")
 	String password;
 	
 	public String getEmail() {

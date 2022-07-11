@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import exila.user.management.config.EmailService;
 import exila.user.management.dto.CreatePasswordDto;
 import exila.user.management.dto.UserDto;
-import exila.user.management.model.ExileUser;
+import exila.user.management.model.User;
 import exila.user.management.repositories.UserRespository;
 import exila.user.management.respopnse.UserResponse;
 import exila.user.management.service.UserManagement;
@@ -32,7 +32,7 @@ public class UserManagementImpl implements UserManagement {
 	@Override
 	public UserResponse createUser(UserDto dto) {
 
-		ExileUser user = mapper.map(dto, ExileUser.class);
+		User user = mapper.map(dto, User.class);
 
 		// now generate op and send email
 

@@ -1,5 +1,8 @@
 package exila.user.management.request;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 /**
  * This object will be visible to client for providing user infromation to the
  * server
@@ -9,17 +12,52 @@ package exila.user.management.request;
  */
 public class UserRequest {
 
+	@NotBlank(message = "First Name is mandatory")
+	private String firstName;
+	
+	private String middleName;
+	
+	@NotBlank(message = "Last Name is mandatory")
+	private String lastName;
+
+	@NotBlank(message = "Age is mandatory")
 	private Integer age;
 
+	@NotBlank(message = "Sex is mandatory")
 	private Character sex;// M or F
 
+	@NotBlank(message = "Phone Number is mandatory")
 	private String phoneNumber;
 
+	@NotBlank(message = "Email is mandatory")
+	@Email
 	private String email;
-	
-	private UserName name;
-	
+
 	private UserAddress address;
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
 	public UserAddress getAddress() {
 		return address;
@@ -61,14 +99,5 @@ public class UserRequest {
 		this.email = email;
 	}
 
-	public UserName getName() {
-		return name;
-	}
-
-	public void setName(UserName name) {
-		this.name = name;
-	}
-	
-	
 
 }

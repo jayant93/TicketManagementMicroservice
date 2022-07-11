@@ -1,5 +1,0 @@
-package exila.user.management.dto;
-
-public class CreatePasswordDto {
-
-}
