@@ -23,6 +23,36 @@ public class ExileUser {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long userId;
 	
+	private String firstName;
+	private String middleName;
+	private String lastName;
+	
+	
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	private Integer age;
 	
 	private Character sex;// M or F
@@ -38,10 +68,6 @@ public class ExileUser {
 	private Boolean firstLogin = false;
 	
 
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="name_id")
-    private UserName name;
-    
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="address_id")
     private UserAddress address;
@@ -104,14 +130,7 @@ public class ExileUser {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public UserName getName() {
-		return name;
-	}
-
-	public void setName(UserName name) {
-		this.name = name;
-	}
-
+	
 	public UserAddress getAddress() {
 		return address;
 	}
@@ -122,9 +141,12 @@ public class ExileUser {
 
 	@Override
 	public String toString() {
-		return "ExileUser [userId=" + userId + ", age=" + age + ", sex=" + sex + ", phoneNumber=" + phoneNumber
-				+ ", name=" + name + ", address=" + address + "]";
+		return "ExileUser [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
+				+ lastName + ", age=" + age + ", sex=" + sex + ", phoneNumber=" + phoneNumber + ", email=" + email
+				+ ", otp=" + otp + ", firstLogin=" + firstLogin + ", address=" + address + "]";
 	}
+
+	
     
     
 	
