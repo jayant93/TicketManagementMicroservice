@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;exila.user.management&apos; to &apos;exile.assignment.management&apos;&#x0A;- Original project: &apos;AssignmentMicroservice&apos;&#x0A;- Original element: &apos;AssignmentMicroservice/src/main/java/exila.user.management&apos;&#x0A;- Renamed element: &apos;AssignmentMicroservice/src/main/java/exile.assignment.management&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;exila.user.management&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;exila.user.management" name="exile.assignment.management" qualified="false" references="true" stamp="1657527709889" textual="false" version="1.0"/>
+</session>

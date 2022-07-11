@@ -40,7 +40,7 @@ public class UserController {
 	public Boolean createPasswordUsingOtp(@Valid @RequestBody CreatePasswordRequest request) {
 		
 		
-		CreatePasswordDto dto = mapper.map(request, CreatePasswordDto.class);
+		//CreatePasswordDto dto = mapper.map(request, CreatePasswordDto.class);
 		
 
 		return true;
