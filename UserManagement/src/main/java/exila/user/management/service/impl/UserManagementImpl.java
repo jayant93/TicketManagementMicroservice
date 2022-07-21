@@ -1,5 +1,8 @@
 package exila.user.management.service.impl;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,10 +10,12 @@ import org.springframework.stereotype.Service;
 import exila.user.management.config.EmailService;
 import exila.user.management.dto.CreatePasswordDto;
 import exila.user.management.dto.UserDto;
+import exila.user.management.exceptions.FalseOtpException;
 import exila.user.management.model.User;
 import exila.user.management.repositories.UserRespository;
 import exila.user.management.respopnse.UserResponse;
 import exila.user.management.service.UserManagement;
+import exila.user.management.utility.Utility;
 
 /**
  * 
@@ -25,7 +30,7 @@ public class UserManagementImpl implements UserManagement {
 
 	@Autowired
 	ModelMapper mapper;
-	
+
 	@Autowired
 	EmailService email;
 
@@ -51,12 +56,31 @@ public class UserManagementImpl implements UserManagement {
 	}
 
 	@Override
-	public Boolean createPassword(CreatePasswordDto dto) {
-		
-		
-		
-		
-		return null;
+	public void createPassword(CreatePasswordDto dto) throws FalseOtpException {
+
+		MessageDigest messageDigest = null;
+		try {
+			messageDigest = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		messageDigest.update(dto.getPassword().getBytes());
+
+		String passwordHash = new String(messageDigest.digest());
+
+		User user = repo.findUserByEmail(dto.getEmail());
+
+		if (user.getOtp().equals(dto.getOtp())) {
+
+			user.setPassword(passwordHash);
+			repo.save(user);
+
+		} else {
+			// throw user defined exception for false otp
+			throw new FalseOtpException(Utility.FALSE_OTP);
+		}
+
 	}
 
 }

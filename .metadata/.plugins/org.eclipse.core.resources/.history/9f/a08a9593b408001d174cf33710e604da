@@ -1,0 +1,5 @@
+package exila.user.management.respopnse;
+
+public class ExileResponse {
+
+}

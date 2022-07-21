@@ -1,0 +1,89 @@
+package exila.user.management.service.impl;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import exila.user.management.config.EmailService;
+import exila.user.management.dto.CreatePasswordDto;
+import exila.user.management.dto.UserDto;
+import exila.user.management.exceptions.FalseOtpException;
+import exila.user.management.model.User;
+import exila.user.management.repositories.UserRespository;
+import exila.user.management.respopnse.UserResponse;
+import exila.user.management.service.UserManagement;
+import exila.user.management.utility.Utility;
+
+/**
+ * 
+ * @author jayantkumar
+ *
+ */
+@Service
+public class UserManagementImpl implements UserManagement {
+
+	@Autowired
+	UserRespository repo;
+
+	@Autowired
+	ModelMapper mapper;
+	
+	@Autowired
+	EmailService email;
+
+	@Override
+	public UserResponse createUser(UserDto dto) {
+
+		User user = mapper.map(dto, User.class);
+
+		// now generate op and send email
+
+		Long otp = Math.abs(Math.round((Math.random() * (Integer.MAX_VALUE - Integer.MIN_VALUE)) + Integer.MIN_VALUE));
+
+		user.setOtp(otp);
+
+		user = repo.save(user);
+
+		// now send email
+		email.sendMessage(user.getEmail(), otp);
+
+		UserResponse response = mapper.map(user, UserResponse.class);
+
+		return response;
+	}
+
+	@Override
+	public Boolean createPassword(CreatePasswordDto dto) throws FalseOtpException {
+		
+		
+		MessageDigest messageDigest = null;
+		try {
+			messageDigest = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		messageDigest.update(dto.getPassword().getBytes());
+		
+		String passwordHash = new String(messageDigest.digest());
+		
+		User user = repo.findUserByEmail(dto.getEmail());
+		
+		if(user.getOtp().equals(dto.getOtp())) {
+		
+			user.setPassword(passwordHash);
+			repo.save(user);
+			
+		}else {
+			throw new FalseOtpException(Utility.FALSE_OTP);//throw user defined exception for false otp
+		}
+		
+		
+		
+		return null;
+	}
+
+}

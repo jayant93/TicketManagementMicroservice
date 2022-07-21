@@ -1,0 +1,9 @@
+package exila.user.management.exceptions;
+
+public class FalseOtpException extends Exception{
+
+	FalseOtpException(String message){
+		super(message);
+	}
+	
+}

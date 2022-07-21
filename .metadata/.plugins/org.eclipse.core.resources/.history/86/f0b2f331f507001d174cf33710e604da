@@ -1,0 +1,13 @@
+package exila.user.management.service;
+
+import exila.user.management.dto.CreatePasswordDto;
+import exila.user.management.dto.UserDto;
+import exila.user.management.respopnse.UserResponse;
+
+public interface UserManagement {
+	
+	 UserResponse createUser(UserDto dto);
+	 
+	 Boolean createPassword(CreatePasswordDto dto);
+
+}

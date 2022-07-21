@@ -63,6 +63,10 @@ public class User {
 	
 	private Long otp;
 	
+	private String password;
+	
+
+
 	//This will be false by default unless user
 	//changes the password using otp
 	private Boolean firstLogin = false;
@@ -72,6 +76,17 @@ public class User {
 	@JoinColumn(name="address_id")
     private UserAddress address;
 
+	
+	
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public String getEmail() {
 		return email;
 	}

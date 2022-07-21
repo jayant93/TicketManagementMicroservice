@@ -1,7 +1,0 @@
-#Application Config
-spring.application.name=TicketManagementMicroservice
-server.port=8764
-
-#Eureka config
-eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
-
