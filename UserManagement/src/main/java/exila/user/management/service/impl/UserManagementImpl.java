@@ -11,6 +11,8 @@ import exila.user.management.config.EmailService;
 import exila.user.management.dto.CreatePasswordDto;
 import exila.user.management.dto.UserDto;
 import exila.user.management.exceptions.FalseOtpException;
+import exila.user.management.exceptions.UserAlreadyExistException;
+import exila.user.management.exceptions.UserNotFoundException;
 import exila.user.management.model.User;
 import exila.user.management.repositories.UserRespository;
 import exila.user.management.respopnse.UserResponse;
@@ -35,16 +37,24 @@ public class UserManagementImpl implements UserManagement {
 	EmailService email;
 
 	@Override
-	public UserResponse createUser(UserDto dto) {
+	public UserResponse createUser(UserDto dto) throws UserAlreadyExistException {
+		
+		
+		//check if user pre exist or not
+		User tempUser = repo.findUserByEmail(dto.getEmail());
+		
+		if(tempUser!=null)
+			throw new UserAlreadyExistException(Utility.USER_ALREADY_EXIST_WITH_EMAIL+dto.getEmail());
 
 		User user = mapper.map(dto, User.class);
+		
 
 		// now generate op and send email
 
 		Long otp = Math.abs(Math.round((Math.random() * (Integer.MAX_VALUE - Integer.MIN_VALUE)) + Integer.MIN_VALUE));
 
 		user.setOtp(otp);
-
+		
 		user = repo.save(user);
 
 		// now send email
@@ -81,6 +91,19 @@ public class UserManagementImpl implements UserManagement {
 			throw new FalseOtpException(Utility.FALSE_OTP);
 		}
 
+	}
+
+	@Override
+	public User getUserByUserId(Long userId) throws UserNotFoundException {
+		
+		
+		User user = repo.findById(userId).get();
+		
+		if(user == null)
+			throw new UserNotFoundException(Utility.USER_NOT_FOUND_EXCEPTION+userId);
+		
+		return user;
+		
 	}
 
 }

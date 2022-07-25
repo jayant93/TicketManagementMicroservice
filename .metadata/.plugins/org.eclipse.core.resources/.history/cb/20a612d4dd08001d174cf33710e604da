@@ -1,0 +1,13 @@
+package exile.org.management.model;
+
+
+public class Organisation {
+
+	int organisationId;
+	
+	String organisationName;
+	
+	String Country;
+	
+	String 
+}

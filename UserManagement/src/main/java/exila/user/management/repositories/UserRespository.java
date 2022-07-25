@@ -11,7 +11,7 @@ import exila.user.management.model.User;
 
 public interface UserRespository extends JpaRepository<User,Long>{
 
-	@Query("Select distinct u from user u where u.email = :email")
+	@Query("Select distinct u from User u where u.email = :email")
 	User findUserByEmail(@Param("email") String email);
 
 	

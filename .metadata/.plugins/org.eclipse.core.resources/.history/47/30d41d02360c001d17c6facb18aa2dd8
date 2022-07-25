@@ -1,0 +1,5 @@
+package exila.user.management.exceptions;
+
+public class UserNotFoundException {
+
+}

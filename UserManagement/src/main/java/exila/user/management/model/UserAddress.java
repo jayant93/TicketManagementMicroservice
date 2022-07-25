@@ -3,6 +3,8 @@ package exila.user.management.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.GenerationType;
 
 @Entity
@@ -19,6 +21,10 @@ public class UserAddress {
 	private String country;
 	private String pincode;
 	private String landmark;
+	
+	@ManyToOne
+    @JoinColumn(name="userId", nullable=false)
+	private User user;
 	
 	
 	public Long getId() {

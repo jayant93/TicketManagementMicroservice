@@ -25,7 +25,6 @@
     <fullyQualifiedTypeName name="org.springframework.mail.javamail.JavaMailSender"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.springframework.mail.SimpleMailMessage"/>
-    <fullyQualifiedTypeName name="exila.user.management.utility.Utility"/>
     <fullyQualifiedTypeName name="exila.user.management.config.EmailServiceImpl"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
     <fullyQualifiedTypeName name="exila.user.management.request.CreatePasswordRequest"/>
@@ -35,4 +34,14 @@
     <fullyQualifiedTypeName name="javax.validation.constraints.Email"/>
     <fullyQualifiedTypeName name="javax.validation.Valid"/>
     <fullyQualifiedTypeName name="exila.user.management.dto.CreatePasswordDto"/>
+    <fullyQualifiedTypeName name="java.security.MessageDigest"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
+    <fullyQualifiedTypeName name="exila.user.management.exceptions.FalseOtpException"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="exila.user.management.respopnse.ExileResponse"/>
+    <fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="exila.user.management.utility.Utility"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
 </qualifiedTypeNameHistroy>

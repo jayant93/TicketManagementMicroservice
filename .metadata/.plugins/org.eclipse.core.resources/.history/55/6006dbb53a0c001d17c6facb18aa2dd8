@@ -1,0 +1,9 @@
+package exila.user.management.exceptions;
+
+public class UserAlreadyExistException extends Exception{
+	
+	UserAlreadyExistException(String message){
+		super(message);
+	}
+
+}

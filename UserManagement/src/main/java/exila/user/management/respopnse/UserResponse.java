@@ -1,8 +1,10 @@
 package exila.user.management.respopnse;
 
-
+import java.util.List;
 
 public class UserResponse {
+	
+	private Long userId;
 
 	private Integer age;
 
@@ -14,15 +16,25 @@ public class UserResponse {
 	
 	private UserName name;
 	
-	private UserAddress address;
-
-	public UserAddress getAddress() {
-		return address;
+	
+	
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setAddress(UserAddress address) {
-		this.address = address;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
+
+//	private List<UserAddress> address;
+//
+//	public List<UserAddress> getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(List<UserAddress> address) {
+//		this.address = address;
+//	}
 
 	public Integer getAge() {
 		return age;

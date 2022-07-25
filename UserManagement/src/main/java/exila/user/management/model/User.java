@@ -3,19 +3,23 @@
  */
 package exila.user.management.model;
 
+
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * @author jayantkumar
  *
  */
 @Entity
+@Table(name="ExileUser") 
 public class User {
 	
 	
@@ -27,7 +31,28 @@ public class User {
 	private String middleName;
 	private String lastName;
 	
+	private Integer age;
 	
+	private Character sex;// M or F
+	
+	private String phoneNumber;
+	
+	private String email;
+	
+	private Long otp;
+	
+	private String password;
+	
+
+
+	//This will be false by default unless user
+	//changes the password using otp
+	private Boolean firstLogin = false;
+	
+
+	@OneToMany(cascade = {CascadeType.ALL},mappedBy="user")
+    private List<UserAddress> address;
+
 	
 	public String getFirstName() {
 		return firstName;
@@ -53,32 +78,16 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	private Integer age;
-	
-	private Character sex;// M or F
-	
-	private String phoneNumber;
-	
-	private String email;
-	
-	private Long otp;
-	
-	private String password;
-	
-
-
-	//This will be false by default unless user
-	//changes the password using otp
-	private Boolean firstLogin = false;
-	
-
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="address_id")
-    private UserAddress address;
 
 	
-	
-	
+	public List<UserAddress> getAddress() {
+		return address;
+	}
+
+	public void setAddress(List<UserAddress> address) {
+		this.address = address;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -145,23 +154,15 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	
-	public UserAddress getAddress() {
-		return address;
-	}
-
-	public void setAddress(UserAddress address) {
-		this.address = address;
-	}
-
 	@Override
 	public String toString() {
-		return "ExileUser [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
+		return "User [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
 				+ lastName + ", age=" + age + ", sex=" + sex + ", phoneNumber=" + phoneNumber + ", email=" + email
-				+ ", otp=" + otp + ", firstLogin=" + firstLogin + ", address=" + address + "]";
+				+ ", otp=" + otp + ", password=" + password + ", firstLogin=" + firstLogin + ", address=" + address
+				+ "]";
 	}
 
-	
+
     
     
 	

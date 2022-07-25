@@ -1,0 +1,15 @@
+package exile.org.management.model;
+
+import java.util.UUID;
+
+public class Organisation {
+
+	UUID organisationId;
+	
+	String organisationName;
+	
+	String Country;
+	
+	int managerId;
+	
+}

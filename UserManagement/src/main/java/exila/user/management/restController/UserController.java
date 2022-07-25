@@ -1,15 +1,21 @@
 package exila.user.management.restController;
 
 import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import exila.user.management.dto.CreatePasswordDto;
 import exila.user.management.dto.UserDto;
+import exila.user.management.model.User;
 import exila.user.management.request.CreatePasswordRequest;
 import exila.user.management.request.UserRequest;
 import exila.user.management.respopnse.ExileResponse;
@@ -26,6 +32,7 @@ public class UserController {
 	@Autowired
 	UserManagement service;
 
+	//@CachePut(value = "users", key = "#user.userId")
 	@PostMapping("/create")
 	public ExileResponse createUser(@Valid @RequestBody UserRequest request) {
 
@@ -34,7 +41,7 @@ public class UserController {
 			UserDto dto = mapper.map(request, UserDto.class);
 
 			response = service.createUser(dto);
-			
+
 		} catch (Exception e) {
 			return new ExileResponse(new String(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
@@ -56,6 +63,21 @@ public class UserController {
 		}
 
 		return new ExileResponse(new String(Utility.PASSWORD_CREATION_SUCCESSFULL), HttpStatus.OK);
+	}
+
+	
+	//@Cacheable(value = "users", key = "#userId")
+	@GetMapping("/{userId}")
+	public ExileResponse getUserByUserId(@PathVariable Long userId) {
+
+		User user = null;
+		try {
+			user = service.getUserByUserId(userId);
+		} catch (Exception e) {
+			return new ExileResponse(new String(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+
+		return new ExileResponse(user, HttpStatus.OK);
 	}
 
 }

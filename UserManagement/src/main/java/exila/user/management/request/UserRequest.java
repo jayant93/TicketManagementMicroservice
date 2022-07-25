@@ -1,5 +1,7 @@
 package exila.user.management.request;
 
+import java.util.ArrayList;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -20,10 +22,10 @@ public class UserRequest {
 	@NotBlank(message = "Last Name is mandatory")
 	private String lastName;
 
-	@NotBlank(message = "Age is mandatory")
+	//@NotBlank(message = "Age is mandatory")
 	private Integer age;
 
-	@NotBlank(message = "Sex is mandatory")
+	//@NotBlank(message = "Sex is mandatory")
 	private Character sex;// M or F
 
 	@NotBlank(message = "Phone Number is mandatory")
@@ -33,7 +35,7 @@ public class UserRequest {
 	@Email
 	private String email;
 
-	private UserAddress address;
+	private ArrayList<UserAddress> address;
 
 	public String getFirstName() {
 		return firstName;
@@ -59,11 +61,13 @@ public class UserRequest {
 		this.lastName = lastName;
 	}
 
-	public UserAddress getAddress() {
+
+
+	public ArrayList<UserAddress> getAddress() {
 		return address;
 	}
 
-	public void setAddress(UserAddress address) {
+	public void setAddress(ArrayList<UserAddress> address) {
 		this.address = address;
 	}
 

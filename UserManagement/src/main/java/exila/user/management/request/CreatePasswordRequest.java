@@ -7,7 +7,7 @@ public class CreatePasswordRequest {
 	@NotBlank(message = "Email is mandatory")
 	String email;
 	
-	@NotBlank(message = "Otp is mandatory")
+	//@NotBlank(message = "Otp is mandatory")
 	Long otp;
 	
 	@NotBlank(message = "Password is mandatory")

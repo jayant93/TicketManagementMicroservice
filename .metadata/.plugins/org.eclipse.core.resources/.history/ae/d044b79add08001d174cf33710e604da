@@ -1,0 +1,5 @@
+package exile.org.management.model;
+
+public class Organisation {
+
+}
